@@ -74,8 +74,8 @@ const Menu = () => {
   }, [menuItems])
 
   return (
-    <div className="mt-4 lg:mt-1">
-      <div className="p-3 md:p-6 lg:p-5">
+    <div className="lg:mt-1">
+      <div className="px-3 md:p-6 lg:p-5">
         <div className="pb-1">
           <div className="flex gap-2 items-center text-gray-900">
             <FaFolder className="text-gray-400" /> / Menus
@@ -89,7 +89,7 @@ const Menu = () => {
             <h2 className="text-3xl font-bold">Menus</h2>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="lg:grid grid-cols-2 gap-4">
           <div className="mt-3">
             <div className="mb-7">
               <label className="text-slate-400">Menu</label>
@@ -145,7 +145,7 @@ const Menu = () => {
                 </button>
               </div>
             </div>
-            <div className="ml-3 lg:ml-5">
+            <div className="ml-5 lg:ml-5">
               <MenuItem
                 nodes={menuExpand.children}
                 addNodes={addNodes}
@@ -155,7 +155,7 @@ const Menu = () => {
               />
             </div>
           </div>
-          <div className="">
+          <div className="mt-12 lg:mt-1">
             <AddMenu record={record} />
           </div>
         </div>

@@ -119,7 +119,7 @@ const AddMenu = ({ record }) => {
             <label className="block pb-1 text-gray-600">Depth</label>
             <input
               type="text"
-              className="w-full bg-slate-200 lg:w-1/2 p-4 border rounded-2xl"
+              className="w-full bg-slate-200 md:w-full lg:w-1/2 p-4 border rounded-2xl"
               readOnly
               value={formData.depth}
             />
@@ -132,7 +132,7 @@ const AddMenu = ({ record }) => {
           <label className="block pb-1 text-gray-600">Parent Data</label>
           <input
             type="text"
-            className="w-full bg-slate-50 lg:w-1/2 p-4 border rounded-2xl"
+            className="w-full bg-slate-50 md:w-full lg:w-1/2 p-4 border rounded-2xl"
             name="parent_id"
             value={formData?.parent_name}
             onChange={(e) => inputChange(e)}
@@ -145,7 +145,7 @@ const AddMenu = ({ record }) => {
         <label className="block pb-1 text-gray-600">Name</label>
         <input
           type="text"
-          className="w-full bg-slate-50 lg:w-1/2 p-4 border rounded-2xl"
+          className="w-full bg-slate-50 md:w-full lg:w-1/2 p-4 border rounded-2xl"
           name="name"
           value={formData.name}
           onChange={(e) => inputChange(e)}
@@ -154,14 +154,14 @@ const AddMenu = ({ record }) => {
       <div className="flex gap-3">
         <button
           type="submit"
-          className="w-full lg:w-1/2 bg-blue-500 text-white py-4 mt-4 rounded-2xl"
+          className="w-full md:w-full lg:w-1/2 bg-blue-500 text-white py-4 mt-4 rounded-2xl"
         >
           Save
         </button>
         {formData && formData.mode === "Edit" && (
           <button
             type="button"
-            className="w-full lg:w-1/2 bg-red-500 text-white py-4 mt-4 rounded-2xl"
+            className="w-full md:w-full lg:w-1/2 bg-red-500 text-white py-4 mt-4 rounded-2xl"
             onClick={deleteMenu}
           >
             Delete

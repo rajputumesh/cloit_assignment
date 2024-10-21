@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../logo.png";
+import menuClose from "../menuClose.png";
 import menuopen from "../menuopen.png";
 import { FaRegFolder } from "react-icons/fa";
 import { menuState } from "../recoil-states";
@@ -44,7 +45,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={` ${
+        className={`fixed top-0 lg:static ${
           isLeft ? "left-0" : "right-0"
         } h-full bg-gray-900 text-white w-64 
         transition-transform transform rounded-3xl z-50 md:translate-x-0 
@@ -75,7 +76,7 @@ const Sidebar = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="mt-4 px-4 space-y-2">
+        <nav className="m-4 space-y-2">
           <ul>
             {menuItems.map((node) => (
               <li
@@ -122,13 +123,12 @@ const Sidebar = () => {
       </div>
 
       {/* Hamburger Icon for Mobile */}
-      <div className="flex md:hidden bg-gray-900 text-white w-100 p-4 justify-between">
-        <img src={logo} />
+      <div className="md:hidden pt-3 px-3">
         <button
           className="z-30 text-white md:hidden"
           onClick={handleToggleSidebar}
         >
-          ☰
+          <img src={menuClose} />
         </button>
       </div>
     </div>
