@@ -1,6 +1,10 @@
 export const BASE_URL = "https://cloit.mkite.in/backend/public/api";
 
 export const addNewMenuItem = (prevMenuItems, newArray, parentId) => {
+  if (parentId == null) {
+    return [...prevMenuItems, newArray];
+  }
+
   return prevMenuItems.map((menuItem) => {
     if (menuItem.id === parentId) {
       return {
