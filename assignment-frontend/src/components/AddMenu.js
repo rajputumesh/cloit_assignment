@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import menuService from "../services/menuService";
 import Swal from "sweetalert2";
 import { useSetRecoilState } from "recoil";
 import { menuState } from "../recoil-states";
+import { addNewMenuItem, deleteMenuItem, updateMenuItems } from "../utils";
 
 const AddMenu = ({ record }) => {
+  const formRef = useRef();
   const setMenuState = useSetRecoilState(menuState);
   const [formData, setFormData] = useState({
     name: "",
@@ -35,6 +37,7 @@ const AddMenu = ({ record }) => {
           depth: null,
           mode: "Add",
         });
+        formRef.current.reset();
   }, [record]);
 
   const handleSaveMenu = (e) => {
@@ -49,11 +52,13 @@ const AddMenu = ({ record }) => {
       })
       .then((res) => {
         if (record && record.mode == "Edit") {
+          setMenuState((oldState) => updateMenuItems(oldState, res));
+        } else {
           setMenuState((oldState) =>
-            oldState.filter((item) => item.id !== formData.menu_id)
+            addNewMenuItem(oldState, res, formData.parent_id)
           );
         }
-        setMenuState((oldState) => [...oldState, res]);
+
         setFormData({
           name: "",
           parent_id: null,
@@ -83,13 +88,15 @@ const AddMenu = ({ record }) => {
         resp
           .then((res) => {
             setMenuState((oldState) =>
-              oldState.filter((item) => item.id !== formData.menu_id)
+              deleteMenuItem(oldState, formData.menu_id)
             );
+            formRef.current.reset();
             setFormData({
               name: "",
               parent_id: null,
               mode: "Add",
             });
+
             Swal.fire({
               icon: "success",
               title: "success",
@@ -102,7 +109,7 @@ const AddMenu = ({ record }) => {
   };
 
   return (
-    <form className="space-y-4" onSubmit={handleSaveMenu}>
+    <form ref={formRef} className="space-y-4" onSubmit={handleSaveMenu}>
       <h4 className="font-bold">{formData.mode} Menu</h4>
       {formData.mode == "Edit" && (
         <>
@@ -127,7 +134,7 @@ const AddMenu = ({ record }) => {
         </>
       )}
 
-      {formData.mode == "Edit" && (
+      {formData.parent_name && (
         <div>
           <label className="block pb-1 text-gray-600">Parent Data</label>
           <input
@@ -155,6 +162,7 @@ const AddMenu = ({ record }) => {
         <button
           type="submit"
           className="w-full md:w-full lg:w-1/2 bg-blue-500 text-white py-4 mt-4 rounded-2xl"
+          onClick={() => formRef.current.reset()}
         >
           Save
         </button>

@@ -71,7 +71,7 @@ const Menu = () => {
 
   useEffect(() => {
     setMenuExpand(menuItems[0] || []);
-  }, [menuItems])
+  }, [menuItems]);
 
   return (
     <div className="lg:mt-1">
