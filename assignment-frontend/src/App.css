@@ -1,0 +1,38 @@
+.tree {
+  position: relative;
+  padding-left: 1rem;
+  margin-left: -7px;
+}
+
+.borderTree {
+  border-left: 2px solid #8080806e;
+}
+
+.borderHalf {
+  border-left: 2px solid;
+  border-image: linear-gradient(to bottom, #8080806e, #ffff) 1 100%;
+}
+
+.tree-node {
+  position: relative;
+}
+
+.tree-branch::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 1.3rem;
+  width: 1.5rem;
+  height: 2px;
+  background-color: #ccc;
+}
+
+/* .tree-branch::after {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #ccc;
+  } */
